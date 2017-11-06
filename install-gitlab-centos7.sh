@@ -12,5 +12,10 @@ sudo systemctl reload firewalld
 
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
-# EXTERNAL_URL="http://gitlab.example.com"
-sudo EXTERNAL_URL="$1" yum install -y gitlab-ee
+if [ "$1" ]; then
+    # EXTERNAL_URL="http://gitlab.example.com"
+    sudo EXTERNAL_URL="$1" yum install -y gitlab-ee
+else
+    echo "[ERROR] EXTERNAL_URL cannot be empty!"
+    exit 1
+fi
